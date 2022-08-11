@@ -1,0 +1,10 @@
+!#/bin/bash
+
+### Upstart layout window rules, get removed further down
+bspc rule -a Vivaldi-stable desktop=^1 && vivaldi-stable &
+bspc rule -a St desktop=^2 && st &
+
+sleep 1
+bspc rule -r St
+bspc rule -a St desktop=^9 && st -e ranger &
+#bspc rule -r "*"

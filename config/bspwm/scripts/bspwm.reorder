@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$(bspc query -M | wc -l)" -eq "3" ] || [ "$(bspc query -M | wc -l)" -eq "4" ]; then
+	bspc monitor %DP-0.2 -d I II III IV V
+	bspc monitor %DP-0.3 -d VI VII VIII IX
+	bspc monitor %DP-0.1 -d X
+	bspc wm --reorder-monitors DP-0.2 DP-0.3 DP-0.1
+	bspc desktop -f ^1
+else
+  bspc monitor %$(bspc query -M --names) -d I II III IV V VI VII VIII IX X
+	bspc desktop -f ^1
+fi

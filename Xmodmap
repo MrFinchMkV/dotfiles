@@ -1,0 +1,16 @@
+!keycode 64 = Super_L
+!keycode 133 = Alt_L
+
+! https://bbs.archlinux.org/viewtopic.php?pid=858309#p858309
+keycode 66 = Mode_switch NoSymbol Mode_switch
+clear mod5
+add mod5 = ISO_Level3_Shift
+keycode 30 = u U udiaeresis Udiaeresis
+keycode 32 = o O odiaeresis Odiaeresis
+keycode 38 = a A adiaeresis Adiaeresis
+keycode 39 = s S ssharp S
+
+keycode 43 = h H Left Left
+keycode 44 = j J Down Down
+keycode 45 = k K Up Up
+keycode 46 = l L Right Right

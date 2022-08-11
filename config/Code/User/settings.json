@@ -1,0 +1,77 @@
+{
+  "editor.fontFamily": "'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontSize": 16,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "telemetry.telemetryLevel": "off",
+  "gitlens.heatmap.toggleMode": "window",
+  "gitlens.hovers.currentLine.over": "line",
+  "git.suggestSmartCommit": false,
+  "gitlens.statusBar.enabled": false,
+  "terraform.languageServer": {
+    "external": true,
+    "pathToBinary": "/usr/bin/terraform-ls",
+    "args": [
+      "serve"
+    ]
+    //"maxNumberOfProblems": 100,
+    //"trace.server": "off"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "ms-azure-devops.azure-pipelines",
+  "editor.formatOnPaste": true,
+  "vim.foldfix": true,
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "o"
+      ],
+      "after": [
+        // let  @o="o<Esc>"
+        "o",
+        "<esc>"
+      ],
+    },
+    {
+      "before": [
+        "<leader>",
+        "O"
+      ],
+      "after": [
+        // let  @O="O<Esc>"
+        "O",
+        "<Esc>"
+      ],
+    },
+  ],
+  "files.trimTrailingWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
+  "git.confirmSync": false,
+  "extensions.ignoreRecommendations": true,
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true
+  },
+  "terraform-ls.experimentalFeatures": {
+    "validateOnSave": true
+  },
+  // "yaml.customTags": [
+    // "!encrypted/pkcs1-oaep scalar",
+    // "!vault scalar"
+  // ],
+  "BracketHighlighter.border": "b",
+  "BracketHighlighter.fontWeight": "bold",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": false,
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  //"editor.bracketPairColorization.enabled": true,
+  "editor.suggest.preview": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "editor.cursorBlinking": "phase",
+  "editor.guides.bracketPairs": true,
+  "security.workspace.trust.untrustedFiles": "open",
+}

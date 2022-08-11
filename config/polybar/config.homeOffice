@@ -1,0 +1,276 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color10:#222}
+highlight = ${xrdb:color7:#222}
+
+;  _                    
+; | |__   __ _ _ __ ___ 
+; | '_ \ / _` | '__/ __|
+; | |_) | (_| | |  \__ \
+; |_.__/ \__,_|_|  |___/
+
+[bar/base]
+enable-ipc = true
+#font-0=CozetteVector:pixelsize=11;2
+#font-0=FiraCode:pixelsize=10:antialias=true;2
+#font-1=IPAGothic:style=Regular:size=10:antialias=true;3
+font-0=DejaVuSans:style=Regular:size=11:antialias=true;3
+font-1=FontAwesome5Free:style=Solid:pixelsize=11:antialias=true;2
+font-2=FontAwesome5Brands:style=Regular:pixelsize=12:antialias=true;2
+
+padding = 5
+border-size = 0
+border-color = ${colors.foreground}
+
+height = 32
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+override-redirect=false
+offset-y = 10
+
+wm-restack = bspwm
+
+[bar/ws]
+inherit = bar/base
+width = 10.4%
+
+offset-x = 10
+line-size = 1
+
+module-margin = 2
+modules-left = bspwm bspwm-monocle-nb-windows 
+; xwindow
+#scroll-up = bspwm.next
+#scroll-down = bspwm.prev
+
+#[bar/music]
+#inherit = bar/base
+#enable-ipc = true
+#width = 25%
+#
+#offset-x = 37.5%
+
+; Spotify (uses playerctl)
+; modules-left = previous playpause next 
+; modules-center = spotify
+; Mpd
+#modules-center = bspwm-monocle-nb-windows
+
+[bar/tray]
+inherit = bar/base
+width = 23.0%
+offset-x = 76.60%
+
+modules-right = cpu memory filesystem wireless-network pulseaudio time
+tray-position = right
+tray-padding = 2
+#tray-offset-x = -1.5%
+
+module-margin = 1.9
+
+separator = "|"
+separator-padding = 1
+
+;                      _       _           
+;  _ __ ___   ___   __| |_   _| | ___  ___ 
+; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+; | | | | | | (_) | (_| | |_| | |  __/\__ \
+; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
+                                         
+[module/bspwm-monocle-nb-windows]
+type = custom/ipc
+hook-0 = ~/.config/bspwm/scripts/bspwm-show-nb-of-windows.sh
+hook-1 = echo
+format-prefix = " "
+initial = 1
+format-margin = 2
+
+#[module/wsnumber]
+#type = custom/script
+#exec = bspc query -D -d focused --names
+#tail = true
+#interval = 0
+#format-margin = 2
+#format = "<label>"
+##scroll-up = bspc desktop -f next
+##scroll-down = bspc desktop -f prev
+#
+##label-monitor = %name%
+##format = "<index>"
+##index-sort = true
+
+#[module/xwindow]
+#type = internal/xwindow
+#label = %title:0:15:...%
+#label-margin = 2
+
+[module/bspwm]
+type = internal/bspwm
+reverse-scroll = false
+
+#label-focused = %name%
+label-focused = %icon%
+label-focused-underline = ${colors.highlight}
+label-focused-foreground = ${colors.highlight}
+label-focused-padding = 1
+
+#label-occupied = %name%
+label-occupied = %icon%
+label-occupied-foreground = ${colors.highlight}
+label-occupied-padding = 1
+
+#label-empty = %name%
+label-empty = %icon%
+label-empty-padding = 1
+
+pin-workspaces = false
+enable-scroll = false
+
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-5 = VI;
+ws-icon-6 = X;
+ws-icon-default = 
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label =  %percentage%%
+#format-margin = 2
+
+[module/memory]
+type = internal/memory
+interval = 3
+label =  %percentage_used%%
+#format-margin = 2
+
+[module/filesystem]
+type = internal/fs
+mount-0 = /
+interval = 60
+format-mounted = <label-mounted>
+label-mounted =   %percentage_used%%
+#format-margin = 2
+
+[module/wireless-network]
+type = internal/network
+interface = wlp0s20f3
+interval = 15
+label-connected =  %essid% (%local_ip%)
+#format-margin = 2
+
+#[module/mpd]
+#type = internal/mpd
+#host = 127.0.0.1
+#port = 6600
+#format-online = <icon-prev> <toggle> <icon-next>   <label-song>  <label-time>
+#format-online-margin = 2
+#
+#format-offline = <label-offline>
+#label-offline =   offline
+#format-offline-padding = 2
+#
+#icon-prev = 
+#icon-stop = 
+#icon-play = 
+#icon-pause = 
+#icon-next = 
+#
+#label-song-maxlen = 50
+#label-song-ellipsis = true
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-margin = 1
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3:3%%
+use-ui-max = false
+interval = 5
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
+label-muted = "  muted"   
+label-muted-padding = 0
+
+[module/time]
+type = internal/date
+interval = 10
+#format-margin = 2
+
+time = "%I:%M %p"
+date = "%a %d/%m"
+
+label = %date%, %time%
+
+;Spotify modules
+
+#[module/previous]
+#type = custom/script
+#exec = echo " "
+#exec-if = "pgrep spotify"
+#click-left = "playerctl previous"
+#
+#
+#[module/next]
+#type = custom/script
+#exec = echo "  "
+#exec-if = "pgrep spotify"
+#click-left = "playerctl next"
+#
+#[module/playpause]
+#type = custom/script
+#exec = spotifystatus
+#exec-if = "pgrep spotify"
+#format-padding = 1
+#tail = true
+#interval = 0
+#click-left = "playerctl -p spotify play-pause"
+#
+#
+#[module/spotify]
+#type = custom/script
+#exec = playerctl -p spotify metadata --format '{{artist}} - {{title}}'
+#exec-if = "pgrep spotify"
+#format-padding = 1
+#tail = true
+#interval = 1
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini

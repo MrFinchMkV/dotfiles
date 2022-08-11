@@ -1,0 +1,73 @@
+#! /bin/sh
+
+# When refreshing bspwm, this will remove all previous rules (bad stuff will happen if not <- said the internet)
+bspc rule -r "*"
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+xmodmap ~/.Xmodmap &
+xbindkeys
+xrdb ~/.Xresources
+wmname LG3D
+autorandr -c
+
+### User Programs
+xfce4-power-manager &
+blueman-applet &
+flameshot &
+enpass -minimize &
+nm-applet &
+
+if [ "$(bspc query -M | wc -l)" -eq "3" ] || [ "$(bspc query -M | wc -l)" -eq "4" ]; then
+  polybar -c ~/.config/polybar/config.homeOffice -rq ws &
+  polybar -c ~/.config/polybar/config.homeOffice -rq tray &
+else
+  polybar -c ~/.config/polybar/config.default -rq ws &
+  polybar -c ~/.config/polybar/config.default -rq tray &
+fi
+
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+
+bspc config border_width         4
+bspc config window_gap           9
+
+bspc config split_ratio          0.55
+bspc config borderless_monocle   true
+bspc config gapless_monocle      false
+
+### Colors
+#bspc config active_border_color "#128aed"
+#bspc config focused_border_color "#7d38d8"
+bspc config focused_border_color "#6A1B9A"
+#bspc config presel_feedback_color "#000000"
+
+# Set the border colors.
+bspc config normal_border_color "$color1"
+bspc config active_border_color "$color2"
+#bspc config focused_border_color "$color15"
+# Use the line below if you are on bspwm >= 0.9.4
+bspc config presel_feedback_color "$color1"
+
+### my part ###
+bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
+bspc config pointer_follows_monitor true
+
+~/.config/bspwm/scripts/bspwm.reorder
+feh --bg-fill ~/.config/background.jpg
+xsetroot -cursor_name left_ptr
+~/.config/bspwm/scripts/start-listener.sh &
+
+if [ "$(bspc query -M | wc -l)" -eq "3" ] || [ "$(bspc query -M | wc -l)" -eq "4" ]; then
+  ~/.config/bspwm/scripts/start-applications.home &
+else
+  ~/.config/bspwm/scripts/start-applications.default &
+fi
+
+### Persistent layout rules
+# Delete Rules so we can start where we want
+sleep 3 # Sleep 3 seconds so the rules are active while the programs are starting
+bspc rule -r "*"
+bspc rule -a Gnome-calculator state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Blueman-manager state=floating
