@@ -1,22 +1,65 @@
 {
-  "workbench.colorTheme": "Default Dark+",
-  "workbench.iconTheme": "material-icon-theme",
-  "redhat.telemetry.enabled": false,
-  "remove-tabs-on-save.ignoreFileExtensions": [
-      "*.go",
-      "*.yml",
-  ],
+  "alignment.surroundSpace": {
+    "colon": [
+      0,
+      1
+    ],
+    "assignment": [
+      1,
+      1
+    ],
+    "arrow": [
+      1,
+      1
+    ],
+    "comment": 2
+  },
+  "[ansible]": {
+    "editor.defaultFormatter": "redhat.ansible"
+  },
+  "BracketHighlighter.border": "b",
+  "BracketHighlighter.fontWeight": "bold",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.cursorBlinking": "phase",
+  "editor.defaultFormatter": "redhat.ansible",
   "editor.fontFamily": "'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.fontSize": 16,
+  "editor.fontSize": 18,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true,
+  "editor.insertSpaces": false,
   "editor.multiCursorModifier": "ctrlCmd",
-  "telemetry.telemetryLevel": "off",
+  "editor.renderWhitespace": "all",
+  "editor.suggest.preview": true,
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "errorLens.enabled": true,
+  "extensions.ignoreRecommendations": true,
+  "files.associations": {
+    "*.json": "jsonc",
+    "*.yml": "ansible"
+  },
+  "files.trimTrailingWhitespace": true,
+  "git.confirmSync": false,
+  "git.suggestSmartCommit": false,
+  "git.useEditorAsCommitInput": false,
   "gitlens.heatmap.toggleMode": "window",
   "gitlens.hovers.currentLine.over": "line",
-  "git.suggestSmartCommit": false,
   "gitlens.statusBar.enabled": false,
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "redhat.ansible",
-  "editor.formatOnPaste": true,
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "telemetry.telemetryLevel": "off",
+  "terraform.experimentalFeatures.validateOnSave": true,
+  "terraform.languageServer.enable": true,
+  "terraform.languageServer.path": "/usr/bin/terraform-ls",
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.hcl",
+    "editor.formatOnSave": true
+  },
   "vim.foldfix": true,
   "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -28,7 +71,7 @@
       "after": [
         // let  @o="o<Esc>"
         "o",
-        "<esc>"
+        "<Esc>"
       ],
     },
     {
@@ -43,21 +86,6 @@
       ],
     },
   ],
-  "files.trimTrailingWhitespace": true,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": true,
-  "git.confirmSync": false,
-  "extensions.ignoreRecommendations": true,
-  "BracketHighlighter.border": "b",
-  "BracketHighlighter.fontWeight": "bold",
-  "editor.tabSize": 2,
-  "editor.insertSpaces": false,
-  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-  "editor.wordWrap": "off",
-  "editor.bracketPairColorization.enabled": true,
-  "editor.suggest.preview": true,
-  // "workbench.colorTheme": "GitHub Dark Dimmed",
-  "editor.cursorBlinking": "phase",
-  "editor.guides.bracketPairs": true,
-  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "material-icon-theme",
 }

@@ -1,19 +1,21 @@
 #!/bin/bash
 
 bspc rule -a Vivaldi-stable --one-shot desktop=^1 && vivaldi-stable &
-sleep 1
 bspc rule -a Alacritty --one-shot desktop=^2 && alacritty &
 sleep 1
-bspc rule -a Alacritty --one-shot desktop=^10 && alacritty -e ranger &
+bspc rule -a Alacritty --one-shot desktop=^6 && alacritty &
+sleep 1
+bspc rule -a Alacritty --one-shot desktop=^9 && alacritty -e ranger &
 sleep 1
 bspc desktop -f ^1
 
 if [ "$WORK" == true ]; then
-  sleep 2
-  bspc desktop -f ^9 && \
+  bspc rule -a Alacritty --one-shot desktop=^3 && alacritty &
+  sleep 1
+  bspc desktop -f ^10 && \
   bspc desktop --layout monocle && \
-  bspc rule -a Slack desktop=^9 && slack &
-  sleep 5
+  bspc rule -a Slack desktop=^10 && slack &
+  sleep 1
   bspc desktop -f ^1 && \
   bspc desktop --layout monocle && \
   bspc node -f prev.local.window
