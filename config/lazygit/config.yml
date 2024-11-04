@@ -1,0 +1,15 @@
+gui:
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - magenta
+      - bold
+    inactiveBorderColor:
+      - magenta
+    optionsTextColor:
+      - white
+    selectedLineBgColor:
+      - reverse
+      - bold
+    defaultFgColor:
+      - magenta

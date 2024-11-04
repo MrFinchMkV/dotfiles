@@ -1,12 +1,38 @@
 #!/bin/bash
 
-if [ "$(bspc query -M | wc -l)" -eq "3" ] || [ "$(bspc query -M | wc -l)" -eq "4" ]; then
-	bspc monitor %DP-0.2 -d I II III IV V
-	bspc monitor %DP-0.3 -d VI VII VIII IX
-	bspc monitor %DP-0.1 -d X
-	bspc wm --reorder-monitors DP-0.2 DP-0.3 DP-0.1
-	bspc desktop -f ^1
+if [ "$WORK" == true ]; then
+  autorandr_profile=$(autorandr --current) # Dell
 else
-  bspc monitor %$(bspc query -M --names) -d I II III IV V VI VII VIII IX X
-	bspc desktop -f ^1
+  autorandr_profile=$(autorandr --detected) # ThinkPad
 fi
+
+case $autorandr_profile in
+  'home_widescreen_dockingstation')
+    left='DP-2-1'
+    middle='DP-2-3'
+    right='DP-2-2'
+  ;;
+  'dell_widescreen_dockingstation')
+    left='DP-1-1'
+    middle='DP-1-3'
+    right='DP-1-2'
+  ;;
+esac
+
+if [ "$(bspc query -M | wc -l)" -eq "3" ] || [ "$(bspc query -M | wc -l)" -eq "4" ]; then
+	bspc monitor "$middle" -d I II III IV V
+	bspc monitor "$right" -d VI VII VIII IX
+	bspc monitor "$left" -d X
+	#bspc wm --reorder-monitors "$left" "$middle" "$right"
+	bspc wm --reorder-monitors "$middle" "$right" "$left"
+	#bspc desktop -f ^1
+elif [ "$(bspc query -M | wc -l)" -eq "2" ]; then
+	bspc monitor "$right" -d I II III IV V VI VII VIII IX
+	bspc monitor "$left" -d X
+	bspc wm --reorder-monitors "$right" "$left"
+	#bspc desktop -f ^1
+else
+  bspc monitor %"$(bspc query -M --names)" -d I II III IV V VI VII VIII IX X
+	#bspc desktop -f ^1
+fi
+
