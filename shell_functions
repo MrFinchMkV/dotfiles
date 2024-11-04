@@ -1,0 +1,23 @@
+histg() {
+  grep_for="$1"
+  [ -n "$grep_for" ] && history 0 | grep "$grep_for" || echo "Add search paramter!"
+}
+
+gpl() {
+  echo "Pruning local"
+  # Get the list of branches to be deleted
+  branches_to_delete=$(git branch -r | awk '{print $1}' | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}')
+
+  # Check if there are no branches to delete
+  if [ -z "$branches_to_delete" ]; then
+    echo "No branches to delete"
+    return
+  fi
+
+  # Execute the deletion based on the input argument
+  if [ -z "$1" ]; then
+    echo "$branches_to_delete" | xargs git branch -d
+  elif [ "$1" = "-f" ]; then
+    echo "$branches_to_delete" | xargs git branch -D
+  fi
+}

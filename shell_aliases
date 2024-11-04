@@ -1,0 +1,70 @@
+# ls
+# export LS_OPTIONS='--color=auto --group-directories-first'
+export LS_OPTIONS='--group-directories-first'
+alias ls='ls --color=auto'
+alias ll='ls $LS_OPTIONS -l'
+alias lll='clear && ls $LS_OPTIONS -l'
+alias la='ls $LS_OPTIONS -lA'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+
+# custom aliases
+alias ..='cd ..'
+alias ..l='cd .. && ll'
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias hist='history 0'
+alias temp='sensors | grep high | grep -v Composite'
+alias dd='dd status=progress'
+alias lsblk='lsblk -o name,size,type,mountpoint,model'
+alias ge='cd /etc'
+alias ping3='ping -c 3'
+alias nv='nvim'
+alias tree='tree -I roles'
+alias bat='bat --theme Coldark-Dark -p'
+
+# terraform
+alias tf='tofu'
+alias tfi='tofu init'
+alias tfp='tofu plan'
+alias tfa='tofu apply'
+alias tfaa='tofu apply -auto-approve'
+alias tfda='tofu apply -destroy -auto-approve'
+
+# SSH
+alias gw='ssh root@gateway.a.binary-io.net'
+
+# Packagemanager
+alias upgrade='paru -Syyuu'
+alias inst='paru -Syu'
+alias searcho='paru -Ss'
+alias searchl='paru -Qs'
+alias remove='paru -R'
+alias removed='paru -Rs'
+alias orph='paru -Qtdq'
+alias fixpacmanlock='sudo rm /var/lib/pacman/db.lck'
+alias update_mirrors='sudo pacman-mirrors --country germany --timeout 5'
+
+# Git
+alias g='git'
+alias gf='git fetch'
+alias gp='git pull'
+alias gps='git push'
+alias gb='git branch'
+alias gc='git clone'
+alias gs='git switch'
+alias gsc='git switch -c'
+alias gd='git diff'
+alias gl='git log'
+alias gll='git lg'
+alias glo='git log --oneline'
+alias gss='git status'
+alias gsm='git switch main'
+alias gsd='git switch develop'
+alias gst='git switch --track'
+alias glom='git log origin/master'
+alias gpo='git remote prune origin'
+alias grh='git revert HEAD'
+alias gpb='gpo && gpl -f'
