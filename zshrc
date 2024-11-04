@@ -43,9 +43,6 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # functions
 [[ -f ~/.shell_functions ]] && source ~/.shell_functions
 
-# additional rc for work
-[[ -f ~/.shell_extensions_work ]] && source ~/.shell_extensions_work
-
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 # jump word
